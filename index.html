@@ -385,29 +385,33 @@
       <p style="font-size:1rem; font-weight:300; color:rgba(253,252,249,0.6); margin-top:1rem; line-height:1.8;">Fill in the form and we'll get back to you within 24 hours. Or WhatsApp us directly — any time.</p>
       <div class="contact-details">
         <div class="contact-item"><span class="contact-item-label">WhatsApp 24/7</span><div class="contact-item-value"><a href="https://wa.me/61424977583">0424 977 583</a></div></div>
-        <div class="contact-item"><span class="contact-item-label">Email</span><div class="contact-item-value"><a href="mailto:info@roofingdownunder.com">info&#64;roofingdownunder.com</a></div></div>
+        <div class="contact-item"><span class="contact-item-label">Email</span><div class="contact-item-value"><a href="/cdn-cgi/l/email-protection#bdd4d3dbd2fdcfd2d2dbd4d3dad9d2cad3c8d3d9d8cf93ded2d0">info&#64;roofingdownunder.com</a></div></div>
         <div class="contact-item"><span class="contact-item-label">Coverage</span><div class="contact-item-value">Australia Wide</div></div>
       </div>
-      <form class="contact-form" id="enquiry-form">
+      <form class="contact-form" id="enquiry-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="1cb227ad-3de3-4503-9f61-95fa5abba2a3">
+        <input type="hidden" name="subject" value="New Enquiry — Roofing Down Under">
+        <input type="hidden" name="from_name" value="RDU Website">
+        <input type="checkbox" name="botcheck" style="display:none">
         <div class="form-row">
-          <div class="form-group"><label for="fname">Your Name</label><input type="text" id="fname" placeholder="John Smith" required></div>
-          <div class="form-group"><label for="fphone">Phone Number</label><input type="tel" id="fphone" placeholder="04XX XXX XXX" required></div>
+          <div class="form-group"><label for="fname">Your Name</label><input type="text" id="fname" name="name" placeholder="John Smith" required></div>
+          <div class="form-group"><label for="fphone">Phone Number</label><input type="tel" id="fphone" name="phone" placeholder="04XX XXX XXX" required></div>
         </div>
-        <div class="form-group"><label for="femail">Your Email</label><input type="email" id="femail" placeholder="john@email.com" required></div>
+        <div class="form-group"><label for="femail">Your Email</label><input type="email" id="femail" name="email" placeholder="john@email.com" required></div>
         <div class="form-row">
           <div class="form-group">
             <label for="fservice">Service Needed</label>
-            <select id="fservice" required>
+            <select id="fservice" name="service" required>
               <option value="" disabled selected>Select a service...</option>
               <option>Roof Repairs</option><option>New Roof Installation</option><option>Re-Roofing</option><option>Gutters &amp; Downpipes</option><option>Commercial Roofing</option><option>Roof Inspection</option><option>Not Sure — Need Advice</option>
             </select>
           </div>
-          <div class="form-group"><label for="fsuburb">Suburb / State</label><input type="text" id="fsuburb" placeholder="e.g. Brisbane QLD"></div>
+          <div class="form-group"><label for="fsuburb">Suburb / State</label><input type="text" id="fsuburb" name="suburb" placeholder="e.g. Brisbane QLD"></div>
         </div>
-        <div class="form-group"><label for="fmessage">Tell Us More (Optional)</label><textarea id="fmessage" placeholder="Brief description of the job, any known issues, urgency, etc."></textarea></div>
-        <button type="submit" class="form-submit">Send Enquiry →</button>
+        <div class="form-group"><label for="fmessage">Tell Us More (Optional)</label><textarea id="fmessage" name="message" placeholder="Brief description of the job, any known issues, urgency, etc."></textarea></div>
+        <button type="submit" class="form-submit" id="submit-btn">Send Enquiry →</button>
       </form>
-      <div class="form-success" id="form-success"><strong>Almost done.</strong><br>Your email app will open with everything pre-filled — just hit Send and we'll be in touch within 24 hours.</div>
+      <div class="form-success" id="form-success"><strong>Enquiry sent!</strong><br>Thanks — we'll be in touch within 24 hours to book a time that suits you.</div>
     </div>
   </div>
 </section>
@@ -432,7 +436,7 @@
       <span class="footer-col-title">Contact</span>
       <ul class="footer-links">
         <li><a href="https://wa.me/61424977583">WhatsApp 24/7 — 0424 977 583</a></li>
-        <li><a href="mailto:info@roofingdownunder.com">info&#64;roofingdownunder.com</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#6c05020a032c1e03030a05020b08031b02190208091e420f0301">info&#64;roofingdownunder.com</a></li>
         <li><a href="https://roofingdownunder.com">roofingdownunder.com</a></li>
       </ul>
     </div>
@@ -452,30 +456,31 @@
   </div>
 </footer>
 
+
 <script>
   const form = document.getElementById('enquiry-form');
   const success = document.getElementById('form-success');
+  const btn = document.getElementById('submit-btn');
   if (form) {
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
       e.preventDefault();
-      const name    = document.getElementById('fname').value.trim();
-      const phone   = document.getElementById('fphone').value.trim();
-      const email   = document.getElementById('femail').value.trim();
-      const service = document.getElementById('fservice').value;
-      const suburb  = document.getElementById('fsuburb').value.trim();
-      const message = document.getElementById('fmessage').value.trim();
-      const subject = encodeURIComponent('New Enquiry — Roofing Down Under');
-      const body = encodeURIComponent(
-        'Name: ' + name + '\n' +
-        'Phone: ' + phone + '\n' +
-        'Email: ' + email + '\n' +
-        'Service: ' + service + '\n' +
-        'Suburb/State: ' + (suburb || 'Not provided') + '\n\n' +
-        'Message:\n' + (message || 'No additional message.')
-      );
-      window.location.href = 'mailto:sales&#64;roofingdownunder.com?subject=' + subject + '&body=' + body;
-      form.style.display = 'none';
-      success.style.display = 'block';
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      const data = new FormData(form);
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+        const json = await res.json();
+        if (json.success) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          btn.textContent = 'Something went wrong — try again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Network error — try again';
+        btn.disabled = false;
+      }
     });
   }
 </script>
