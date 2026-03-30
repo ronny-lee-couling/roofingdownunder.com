@@ -207,12 +207,6 @@
 </head>
 <body>
 
-<!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/61424977583" target="_blank" class="whatsapp-float" aria-label="WhatsApp us">
-  <span class="wa-label">WhatsApp 24/7</span>
-  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
-
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">Roofing <span>Down Under</span></a>
@@ -252,7 +246,7 @@
   <div class="trust-dot"></div>
   <div class="trust-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5,10 12,3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Fully Insured</div>
   <div class="trust-dot"></div>
-  <div class="trust-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5,10 12,3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>WhatsApp 24/7 — 0424 977 583</div>
+  <div class="trust-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5,10 12,3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Chat with Rocky — Available 24/7</div>
 </div>
 
 <!-- SERVICES -->
@@ -483,6 +477,286 @@
       }
     });
   }
+</script>
+
+<!-- CHAT WITH ROCKY -->
+<style>
+  .chat-fab { position:fixed; bottom:2rem; right:2rem; z-index:200; display:flex; align-items:center; gap:0.6rem; background:var(--char); border:2px solid var(--rust); border-radius:30px; padding:0.6rem 1.1rem 0.6rem 0.7rem; cursor:pointer; box-shadow:0 4px 20px rgba(44,36,32,0.25); transition:transform 0.2s,box-shadow 0.2s; }
+  .chat-fab:hover { transform:translateY(-2px); box-shadow:0 6px 24px rgba(44,36,32,0.3); }
+  .chat-fab-paw { width:32px; height:32px; border-radius:50%; background:var(--rust); display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+  .chat-fab-text { font-family:var(--sans); font-size:0.82rem; font-weight:500; color:var(--white); letter-spacing:0.03em; line-height:1; }
+  .chat-fab-sub { font-size:0.68rem; color:rgba(253,252,249,0.5); margin-top:2px; }
+  .chat-fab .chat-badge { width:16px; height:16px; background:var(--rust-lt); border-radius:50%; font-size:9px; font-weight:700; color:white; display:flex; align-items:center; justify-content:center; font-family:var(--sans); position:absolute; top:-5px; right:-5px; }
+  .chat-window { position:fixed; bottom:6.5rem; right:2rem; z-index:200; width:350px; max-height:540px; background:var(--white); border-radius:16px; box-shadow:0 12px 48px rgba(44,36,32,0.22); border:1px solid var(--border); display:none; flex-direction:column; overflow:hidden; animation:chatIn 0.2s ease; }
+  @keyframes chatIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+  .chat-window.open { display:flex; }
+  .chat-header { background:var(--char); padding:1rem 1.25rem; display:flex; align-items:center; justify-content:space-between; }
+  .chat-header-info { display:flex; align-items:center; gap:0.75rem; }
+  .chat-avatar { width:40px; height:40px; border-radius:50%; background:var(--rust); display:flex; align-items:center; justify-content:center; font-size:20px; }
+  .chat-header-text .chat-name { font-size:0.92rem; font-weight:500; color:var(--white); line-height:1.2; }
+  .chat-header-text .chat-status { font-size:0.7rem; color:rgba(253,252,249,0.5); display:flex; align-items:center; gap:4px; }
+  .chat-online-dot { width:6px; height:6px; background:#4ade80; border-radius:50%; display:inline-block; }
+  .chat-close { background:none; border:none; cursor:pointer; padding:4px; color:rgba(253,252,249,0.5); font-size:1.1rem; line-height:1; transition:color 0.15s; }
+  .chat-close:hover { color:var(--white); }
+  .chat-messages { flex:1; overflow-y:auto; padding:1rem; display:flex; flex-direction:column; gap:0.75rem; scroll-behavior:smooth; }
+  .chat-msg { max-width:88%; padding:0.7rem 0.95rem; border-radius:12px; font-size:0.875rem; line-height:1.55; }
+  .chat-msg.bot { background:var(--sand); color:var(--char); align-self:flex-start; border-bottom-left-radius:3px; }
+  .chat-msg.user { background:var(--rust); color:white; align-self:flex-end; border-bottom-right-radius:3px; }
+  .chat-options { display:flex; flex-wrap:wrap; gap:0.45rem; padding:0.25rem 1rem 0.75rem; }
+  .chat-option { background:none; border:1px solid var(--border); border-radius:20px; padding:0.4rem 0.9rem; font-size:0.8rem; font-family:var(--sans); color:var(--char); cursor:pointer; transition:all 0.15s; white-space:nowrap; }
+  .chat-option:hover { border-color:var(--rust); color:var(--rust); background:rgba(181,80,42,0.06); }
+  .chat-book-btn { display:inline-block; margin-top:0.5rem; background:var(--rust); color:white; text-decoration:none; padding:0.55rem 1.1rem; border-radius:20px; font-size:0.82rem; font-family:var(--sans); font-weight:500; cursor:pointer; border:none; transition:background 0.2s; }
+  .chat-book-btn:hover { background:var(--rust-dk); }
+  .chat-input-row { display:flex; gap:0.5rem; padding:0.75rem 1rem; border-top:1px solid var(--border); background:var(--white); }
+  .chat-input { flex:1; border:1px solid var(--border); border-radius:20px; padding:0.55rem 1rem; font-size:0.875rem; font-family:var(--sans); outline:none; color:var(--char); background:var(--cream); transition:border-color 0.2s; }
+  .chat-input:focus { border-color:var(--rust); }
+  .chat-send { background:var(--rust); border:none; border-radius:50%; width:36px; height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s; flex-shrink:0; }
+  .chat-send:hover { background:var(--rust-dk); }
+  .chat-send svg { width:14px; height:14px; fill:white; }
+  .chat-typing { display:flex; align-items:center; gap:4px; padding:0.7rem 0.95rem; background:var(--sand); border-radius:12px; border-bottom-left-radius:3px; align-self:flex-start; }
+  .chat-typing span { width:7px; height:7px; background:var(--muted); border-radius:50%; animation:tdot 1.2s infinite; }
+  .chat-typing span:nth-child(2){animation-delay:0.2s}
+  .chat-typing span:nth-child(3){animation-delay:0.4s}
+  @keyframes tdot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-7px)}}
+  @media(max-width:480px){.chat-window{width:calc(100vw - 1.5rem);right:0.75rem;bottom:5.5rem}.chat-fab{right:1rem;bottom:1rem}}
+</style>
+
+<button class="chat-fab" id="chatFab" aria-label="Chat with Rocky">
+  <span class="chat-badge">1</span>
+  <div class="chat-fab-paw">🐾</div>
+  <div>
+    <div class="chat-fab-text">Chat with Rocky</div>
+    <div class="chat-fab-sub">Usually replies instantly</div>
+  </div>
+</button>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-header-info">
+      <div class="chat-avatar">🐾</div>
+      <div class="chat-header-text">
+        <div class="chat-name">Rocky — RDU</div>
+        <div class="chat-status"><span class="chat-online-dot"></span> Online now</div>
+      </div>
+    </div>
+    <button class="chat-close" id="chatClose">&#x2715;</button>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-options" id="chatOptions"></div>
+  <div class="chat-input-row">
+    <input class="chat-input" id="chatInput" placeholder="Type a message..." autocomplete="off">
+    <button class="chat-send" id="chatSendBtn">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ── REPLACE THIS WITH RONNY'S GOOGLE CALENDAR BOOKING LINK ── */
+  const BOOKING_LINK = 'https://calendar.google.com/calendar/appointments/YOUR_LINK_HERE';
+
+  const fab = document.getElementById('chatFab');
+  const win = document.getElementById('chatWindow');
+  const msgs = document.getElementById('chatMessages');
+  const opts = document.getElementById('chatOptions');
+  const input = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('chatSendBtn');
+  const closeBtn = document.getElementById('chatClose');
+  const badge = fab.querySelector('.chat-badge');
+
+  let state = 'greeting';
+  let lead = {};
+  let started = false;
+
+  fab.addEventListener('click', () => {
+    win.classList.toggle('open');
+    badge.style.display = 'none';
+    if (!started) { started = true; startChat(); }
+  });
+  closeBtn.addEventListener('click', () => win.classList.remove('open'));
+
+  function startChat() {
+    setTimeout(() => {
+      botMsg("G'day! Rocky here — official site supervisor at Roofing Down Under. 🐾 What can I help you with today?");
+      showOptions(['Get a free quote','Book an inspection','Ask about our services','Talk to Ronny directly']);
+    }, 500);
+    state = 'greeting';
+  }
+
+  function botMsg(text, delay=700) {
+    const typing = document.createElement('div');
+    typing.className = 'chat-typing';
+    typing.innerHTML = '<span></span><span></span><span></span>';
+    msgs.appendChild(typing);
+    msgs.scrollTop = msgs.scrollHeight;
+    setTimeout(() => {
+      typing.remove();
+      const m = document.createElement('div');
+      m.className = 'chat-msg bot';
+      m.textContent = text;
+      msgs.appendChild(m);
+      msgs.scrollTop = msgs.scrollHeight;
+    }, delay);
+  }
+
+  function botMsgWithBook(text, btnText, delay=700) {
+    const typing = document.createElement('div');
+    typing.className = 'chat-typing';
+    typing.innerHTML = '<span></span><span></span><span></span>';
+    msgs.appendChild(typing);
+    msgs.scrollTop = msgs.scrollHeight;
+    setTimeout(() => {
+      typing.remove();
+      const wrap = document.createElement('div');
+      wrap.className = 'chat-msg bot';
+      wrap.style.display = 'flex';
+      wrap.style.flexDirection = 'column';
+      wrap.style.gap = '0.5rem';
+      const p = document.createElement('span');
+      p.textContent = text;
+      const btn = document.createElement('a');
+      btn.href = BOOKING_LINK;
+      btn.target = '_blank';
+      btn.className = 'chat-book-btn';
+      btn.textContent = btnText;
+      wrap.appendChild(p);
+      wrap.appendChild(btn);
+      msgs.appendChild(wrap);
+      msgs.scrollTop = msgs.scrollHeight;
+    }, delay);
+  }
+
+  function userMsg(text) {
+    opts.innerHTML = '';
+    const m = document.createElement('div');
+    m.className = 'chat-msg user';
+    m.textContent = text;
+    msgs.appendChild(m);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+
+  function showOptions(options, delay=800) {
+    opts.innerHTML = '';
+    setTimeout(() => {
+      options.forEach(o => {
+        const btn = document.createElement('button');
+        btn.className = 'chat-option';
+        btn.textContent = o;
+        btn.addEventListener('click', () => handleInput(o));
+        opts.appendChild(btn);
+      });
+    }, delay);
+  }
+
+  function handleInput(text) {
+    userMsg(text);
+    opts.innerHTML = '';
+    processFlow(text);
+  }
+
+  function processFlow(text) {
+    const t = text.toLowerCase();
+
+    if (state === 'greeting') {
+      if (t.includes('book') || t.includes('inspection')) {
+        state = 'book_name';
+        botMsg("Beauty! Let me grab a few quick details first, then I'll send you Ronny's booking link. What's your name?");
+      } else if (t.includes('quote')) {
+        state = 'service';
+        botMsg("No worries! What kind of roofing work are you after?");
+        showOptions(['Roof Repairs','New Roof Installation','Re-Roofing','Gutters & Downpipes','Commercial Roofing','Not sure yet']);
+      } else if (t.includes('service') || t.includes('about')) {
+        state = 'services_info';
+        botMsg("RDU does it all — repairs, full re-roofs, Colorbond installs, gutters, and commercial jobs. No patch-up work, no shortcuts. Permanent solutions only.");
+        botMsg("What kind of work do you need done?", 1400);
+        setTimeout(() => showOptions(['Roof Repairs','Re-Roofing','Colorbond Install','Gutters','Commercial','Book a free inspection']), 1600);
+        state = 'service';
+      } else if (t.includes('ronny') || t.includes('talk') || t.includes('direct')) {
+        state = 'done';
+        botMsg("Ronny's best on WhatsApp — 0424 977 583. Or chuck your details below and he'll call you back within a few hours.");
+        showOptions(['Leave my details','No thanks']);
+        state = 'direct_choice';
+      } else {
+        state = 'service';
+        botMsg("Righto! What kind of roofing work are you after?");
+        showOptions(['Roof Repairs','New Roof Installation','Re-Roofing','Gutters & Downpipes','Commercial Roofing','Not sure yet']);
+      }
+    } else if (state === 'direct_choice') {
+      if (t.includes('leave') || t.includes('detail')) {
+        state = 'book_name';
+        botMsg("Sweet! What's your name?");
+      } else {
+        botMsg("No worries — Rocky out. 🐾");
+        state = 'done';
+      }
+    } else if (state === 'service') {
+      lead.service = text;
+      state = 'suburb';
+      botMsg("Good one. What suburb or area are you in? We cover all of Australia.");
+    } else if (state === 'suburb') {
+      lead.suburb = text;
+      state = 'book_name';
+      botMsg("No worries, we cover " + text.split(' ')[0] + ". What's your name?");
+    } else if (state === 'book_name') {
+      lead.name = text;
+      state = 'book_phone';
+      botMsg("Nice to meet you " + text.split(' ')[0] + "! Best number to reach you on?");
+    } else if (state === 'book_phone') {
+      lead.phone = text;
+      state = 'book_email';
+      botMsg("And your email address?");
+    } else if (state === 'book_email') {
+      lead.email = text;
+      state = 'submitting';
+      botMsg("Ripper — sending that through now...");
+      submitAndBook();
+    } else if (state === 'done') {
+      botMsg("Anything else I can help with?");
+      showOptions(['Get a free quote','Book an inspection','Talk to Ronny directly']);
+      state = 'greeting';
+    }
+  }
+
+  async function submitAndBook() {
+    const data = new FormData();
+    data.append('access_key', '1cb227ad-3de3-4503-9f61-95fa5abba2a3');
+    data.append('subject', 'New Chat Enquiry — Roofing Down Under');
+    data.append('from_name', 'Rocky Chatbot');
+    data.append('name', lead.name || '');
+    data.append('phone', lead.phone || '');
+    data.append('email', lead.email || '');
+    data.append('service', lead.service || 'Not specified');
+    data.append('suburb', lead.suburb || 'Not specified');
+    data.append('message', 'Lead captured via Rocky chatbot.');
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {method:'POST',body:data});
+      const json = await res.json();
+      if (json.success) {
+        setTimeout(() => {
+          const firstName = lead.name ? lead.name.split(' ')[0] : 'mate';
+          botMsgWithBook(
+            "You're locked in " + firstName + "! Ronny will be in touch. Want to pick a time that suits you? Use the button below to book directly into his calendar.",
+            "Pick a time with Ronny →",
+            800
+          );
+          setTimeout(() => showOptions(['All good, cheers!','I have another question']), 2000);
+          state = 'done';
+          lead = {};
+        }, 600);
+      } else {
+        botMsg("Something went sideways — give Ronny a call on 0424 977 583.");
+        state = 'done';
+      }
+    } catch {
+      botMsg("Network hiccup — call or text Ronny on 0424 977 583.");
+      state = 'done';
+    }
+  }
+
+  input.addEventListener('keydown', e => { if(e.key==='Enter' && input.value.trim()){handleInput(input.value.trim());input.value='';} });
+  sendBtn.addEventListener('click', () => { if(input.value.trim()){handleInput(input.value.trim());input.value='';} });
+})();
 </script>
 </body>
 </html>
