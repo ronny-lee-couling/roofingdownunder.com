@@ -204,8 +204,52 @@
     .form-row { grid-template-columns:1fr; }
   }
 </style>
+<!-- PASSWORD SCREEN -->
+<style>
+  #pwScreen{position:fixed;inset:0;background:var(--sand);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem}
+  #pwScreen .pw-paw{font-size:3rem}
+  #pwScreen .pw-title{font-family:var(--serif);font-size:2rem;font-weight:500;color:var(--char)}
+  #pwScreen .pw-title span{color:var(--rust);font-style:italic}
+  #pwScreen .pw-sub{font-size:0.85rem;color:var(--warm);letter-spacing:0.06em}
+  #pwScreen .pw-input{border:1px solid var(--border);border-radius:2px;padding:0.75rem 1.25rem;font-family:var(--sans);font-size:1rem;background:var(--white);color:var(--char);outline:none;text-align:center;width:240px;transition:border-color 0.2s}
+  #pwScreen .pw-input:focus{border-color:var(--rust)}
+  #pwScreen .pw-btn{background:var(--rust);color:var(--white);border:none;border-radius:2px;padding:0.75rem 2rem;font-family:var(--sans);font-size:0.9rem;font-weight:500;cursor:pointer;transition:background 0.2s}
+  #pwScreen .pw-btn:hover{background:var(--rust-lt)}
+  #pwScreen .pw-err{font-size:0.82rem;color:var(--rust);display:none}
+</style>
 </head>
 <body>
+
+<div id="pwScreen">
+  <div class="pw-paw">🐾</div>
+  <div class="pw-title">Roofing <span>Down Under</span></div>
+  <div class="pw-sub">Site access required</div>
+  <input class="pw-input" type="password" id="pwInput" placeholder="Enter password" autocomplete="off">
+  <button class="pw-btn" onclick="checkPw()">Enter</button>
+  <div class="pw-err" id="pwErr">Wrong password — try again.</div>
+</div>
+
+<script>
+  (function(){
+    if(sessionStorage.getItem('rdu_access')==='true'){
+      document.getElementById('pwScreen').style.display='none';
+    }
+  })();
+  function checkPw(){
+    const val = document.getElementById('pwInput').value;
+    if(val.toLowerCase()==='rocky'){
+      sessionStorage.setItem('rdu_access','true');
+      document.getElementById('pwScreen').style.display='none';
+    } else {
+      document.getElementById('pwErr').style.display='block';
+      document.getElementById('pwInput').value='';
+      document.getElementById('pwInput').focus();
+    }
+  }
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Enter'&&document.getElementById('pwScreen').style.display!=='none'){checkPw();}
+  });
+</script>
 
 <!-- NAV -->
 <nav>
@@ -446,7 +490,7 @@
   </div>
   <div class="footer-bottom">
     <div class="footer-meta">ABN 96 899 143 964 &middot; Lic. 352581C &middot; Australia Wide</div>
-    <div class="footer-rocky">Approved by Rocky the Blue Heeler</div>
+    <div class="footer-rocky">Approved by Rocky the Blue Heeler &nbsp;·&nbsp; <a href="https://team.roofingdownunder.com" target="_blank" style="color:rgba(253,252,249,0.25);text-decoration:none;font-style:normal;transition:color 0.2s" onmouseover="this.style.color='var(--rust-lt)'" onmouseout="this.style.color='rgba(253,252,249,0.25)'">Team Portal</a></div>
   </div>
 </footer>
 
